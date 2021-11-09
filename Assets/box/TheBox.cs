@@ -11,14 +11,14 @@ public class TheBox : MonoBehaviour
     [SerializeField] float snakeBiteCheckDelay;
     [SerializeField] int snakeBiteOdds, snakeBiteOddsChangePerCatch;
     [SerializeField] float startingSnakeSpeed, snakeSpeedChangePerCatch;
-    int snakecatches;
-    int snakeMisses;
+    [SerializeField] bool shouldSnakeBite;
+    int snakecatches, snakeMisses;
     float snakeSpeed;
     private void OnEnable()
     {
+        shouldSnakeBite = GameSettings.shouldSnakeBite;
         snakeSpeed = startingSnakeSpeed;
         MakeSnake();
-        hand.SetHandImage(null);
         UI.SetNumberOfSnakeMisses(snakeMisses, maxSnakeMisses);
     }
     void MakeSnake()
@@ -50,7 +50,7 @@ public class TheBox : MonoBehaviour
     }
     void SnakeBiteCheck()
     {
-        if (Random.Range(0, snakeBiteOdds) == 0)
+        if (Random.Range(0, snakeBiteOdds) == 0 && shouldSnakeBite)
         {
             hand.SetHandImage(snakeBiteHand);
             AudioManager.S.PlaySound("snakebite");
