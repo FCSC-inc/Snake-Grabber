@@ -12,6 +12,7 @@ public class Snake : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         _box.CatchSnake();
+        AudioManager.S.PlaySound("snakecatch");
         Destroy(gameObject);
     }
     void Destroy()

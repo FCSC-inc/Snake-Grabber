@@ -53,6 +53,7 @@ public class TheBox : MonoBehaviour
         if (Random.Range(0, snakeBiteOdds) == 0)
         {
             hand.SetHandImage(snakeBiteHand);
+            AudioManager.S.PlaySound("snakebite");
             UI.DeathSequence();
         }
         else

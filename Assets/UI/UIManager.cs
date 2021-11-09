@@ -16,5 +16,6 @@ public class UIManager : MonoBehaviour
     public void DeathSequence()
     {
         _deathAnim.Play(deathSequenceName);
+        AudioManager.S.PlaySound("death");
     }
 }
