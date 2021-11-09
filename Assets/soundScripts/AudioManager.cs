@@ -34,7 +34,6 @@ public class AudioManager : MonoBehaviour
     {
         RandomizeAudioClip(sound);
         sound.Source.Play();
-        Debug.Log(sound.name);
     }
     public void StopSound(SoundByte sound) => sound.Source.Stop();
     public void StopSound(string SoundName) => StopSound(ConvertSoundNameToSound(SoundName));
