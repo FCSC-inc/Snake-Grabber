@@ -9,6 +9,7 @@ public class Hand : MonoBehaviour
     bool _isClosed;
     const float colliderTime = 0.1f;
     float timeSinceLast;
+    [HideInInspector] public bool locked;
     private void OnEnable()
     {
         Cursor.visible = false;
@@ -24,7 +25,8 @@ public class Hand : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
             _isClosed = false;
-        SetHandImage(_isClosed ? Closed : Open);
+        if (!locked)
+            SetHandImage(_isClosed ? Closed : Open);
         transform.position = (Camera.main.ScreenToWorldPoint(Input.mousePosition) + (Vector3)Offset) / PPU;
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
 

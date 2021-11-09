@@ -1,14 +1,76 @@
 using UnityEngine;
+using System.Collections;
 public class TheBox : MonoBehaviour
 {
     [SerializeField] GameObject SnekPrefab;
     [SerializeField] Transform[] spawnPositions;
     [SerializeField] Hand hand;
-    [SerializeField] 
+    [SerializeField] UIManager UI;
+    [SerializeField] int maxSnakeMisses;
+    [SerializeField] Sprite handSnake, snakeBiteHand;
+    [SerializeField] float snakeBiteCheckDelay;
+    [SerializeField] int snakeBiteOdds, snakeBiteOddsChangePerCatch;
+    [SerializeField] float startingSnakeSpeed, snakeSpeedChangePerCatch;
+    int snakecatches;
+    int snakeMisses;
+    float snakeSpeed;
     private void OnEnable()
     {
-        GameObject snake = Instantiate(SnekPrefab, spawnPositions[Random.Range(0, 3)]);
-        snake.GetComponent<Snake>().Init(this);
+        snakeSpeed = startingSnakeSpeed;
+        MakeSnake();
         hand.SetHandImage(null);
+        UI.SetNumberOfSnakeMisses(snakeMisses, maxSnakeMisses);
+    }
+    void MakeSnake()
+    {
+        GameObject snake = Instantiate(SnekPrefab, spawnPositions[Random.Range(0, 3)]);
+        snake.GetComponent<Snake>().Init(this, snakeSpeed);
+    }
+    public void MissSnake()
+    {
+        snakeMisses++;
+        UI.SetNumberOfSnakeMisses(snakeMisses, maxSnakeMisses);
+        if (snakeMisses == maxSnakeMisses)
+        {
+            hand.locked = true;
+            hand.SetHandImage(snakeBiteHand);
+            UI.DeathSequence();
+        }
+        StartCoroutine(newSnakeDelay());
+    }
+    public void CatchSnake()
+    {
+        snakeSpeed += snakeSpeedChangePerCatch;
+        snakecatches++;
+        snakeBiteOdds += snakeBiteOddsChangePerCatch;
+        UI.SetNumberOfSnakeCatches(snakecatches);
+        hand.locked = true;
+        hand.SetHandImage(handSnake);
+        StartCoroutine(handGrabDelay());
+    }
+    void SnakeBiteCheck()
+    {
+        if (Random.Range(0, snakeBiteOdds) == 0)
+        {
+            hand.SetHandImage(snakeBiteHand);
+            UI.DeathSequence();
+        }
+        else
+        {
+            hand.locked = false;
+            snakeMisses = 0;
+            UI.SetNumberOfSnakeMisses(snakeMisses, maxSnakeMisses);
+            StartCoroutine(newSnakeDelay());
+        }
+    }
+    IEnumerator handGrabDelay()
+    {
+        yield return new WaitForSeconds(snakeBiteCheckDelay);
+        SnakeBiteCheck();   
+    }
+    IEnumerator newSnakeDelay()
+    {
+        yield return new WaitForSeconds(snakeBiteCheckDelay);
+        MakeSnake();
     }
 }

@@ -7,18 +7,21 @@ public class Snake : MonoBehaviour
     TheBox _box;
     void OnEnable()
     {
-        _anim.speed = 0.1f;
+        _anim = GetComponent<Animator>();
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-
+        _box.CatchSnake();
+        Destroy(gameObject);
     }
     void Destroy()
     {
+        _box.MissSnake();
         Destroy(gameObject);
     }
-    public void Init(TheBox box)
+    public void Init(TheBox box, float animSpeed)
     {
         _box = box;
+        _anim.speed = animSpeed;
     }
 }
