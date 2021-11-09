@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59ece3298a58d24498d9c6c6815bb528, type: 3}
-  m_Name: BGMusic
+  m_Name: certifiedhoodclassic
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
-  Name: BGMusic
-  Loop: 1
+  Name: CertifiedClassic
+  Loop: 0
   PlayOnAwake: 1
   possibleSounds:
-  - Volume: 0.315
+  - Volume: 0.635
     Pitch: 1
-    audio: {fileID: 8300000, guid: fb389dae4fafeeb4b9b566feacfd1b5d, type: 3}
+    audio: {fileID: 8300000, guid: 7553404a46e564a47b07a15c5b2af724, type: 3}
