@@ -473,11 +473,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24300002, guid: d38b6f7404cbc0e45bb292d1b020d21d, type: 2}
-  sounds:
+  _sounds:
+  - {fileID: 11400000, guid: 4d7e7a239a06195408ad604a974a98e3, type: 2}
+  - {fileID: 11400000, guid: dc5f7269f56c2c5499b4ecbca8d53b3d, type: 2}
   - {fileID: 11400000, guid: bb0b7191b6edb554a937dac891b1735a, type: 2}
   - {fileID: 11400000, guid: 03ef2ac25fb837847bae469530b6921c, type: 2}
-  - {fileID: 11400000, guid: dc5f7269f56c2c5499b4ecbca8d53b3d, type: 2}
-  - {fileID: 11400000, guid: 4d7e7a239a06195408ad604a974a98e3, type: 2}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

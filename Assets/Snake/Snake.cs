@@ -1,4 +1,5 @@
 using UnityEngine;
+using SoulShard.Utils;
 [RequireComponent(typeof(Animator))]
 public class Snake : MonoBehaviour
 {

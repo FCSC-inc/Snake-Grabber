@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24300002, guid: d38b6f7404cbc0e45bb292d1b020d21d, type: 2}
-  sounds:
+  _sounds:
   - {fileID: 11400000, guid: 8013a08cdd840154599255b75db94a3b, type: 2}
 --- !u!1 &194753119
 GameObject:
